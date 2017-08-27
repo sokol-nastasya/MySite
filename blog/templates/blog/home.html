@@ -1,0 +1,17 @@
+{%extends 'blog/base.html'%}
+
+{% block title%}
+
+<h1>Добро пожаловать</h1>
+
+{% endblock%}
+
+{%block context%}
+
+	{% for article in articles %}
+		<h4><a href="/article/{{ article.id }}">{{ article.title }}</a></h4>
+		<pre>{{ article.get_short_text }}</pre>
+
+	{% endfor %}
+
+{% endblock %}

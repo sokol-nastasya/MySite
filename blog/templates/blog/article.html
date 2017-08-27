@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+	{{article.title}}
+{% endblock %}
+
+{% block context %}
+	<h1>{{ article.title }}</h1>
+	<pre>{{ article.text }}</pre>
+	<h4>Ваши комментарии</h4>
+	<div class = "contenier">
+		{% for comment in comments %}
+			{{ comment.comments_text}}
+		{% endfor %}
+
+		<form action="/article/addcomment/{{article.id}}/" method = "post">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" class="button" value="Добавить">
+		</form>
+	</div>
+
+
+{% endblock %}
