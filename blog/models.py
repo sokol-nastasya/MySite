@@ -6,6 +6,7 @@ SHORT_TEXT_LEN = 1000
 class Article(models.Model):
 	title = models.CharField(max_length = 200)
 	text = models.TextField()
+	likes = models.IntegerField(default = 0)
 	user = models.ForeignKey(User)
 
 	def __str__(self):

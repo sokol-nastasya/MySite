@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 	{{article.title}}
@@ -7,6 +8,7 @@
 {% block context %}
 	<h1>{{ article.title }}</h1>
 	<pre>{{ article.text }}</pre>
+	 <p><a href="/article/addlike/{{article.id}}/"><img src="{% static 'like.png' %}" width="25px" height="25px"></a> {{article.likes}}</p> 
 	<h4>Ваши комментарии</h4>
 	<div class = "contenier">
 		{% for comment in comments %}

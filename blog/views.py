@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect, HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -6,7 +6,7 @@ from django.template import RequestContext
 from blog.models import Article, Comments
 from blog.forms import CommentForm
 
-# Create your views here.
+
 def home(request):
 	articles = Article.objects.all()
 	context = {'articles':articles}
@@ -32,6 +32,14 @@ def show_article(request, article_id):
 	# args = {'article' : article, 
 	# 		'comments' : Comments.objects.filter(comments_article_id = article_id), }
 	# return render(request, 'blog/article.html', args)
+
+
+def addlikes(request, article_id):
+	article = get_object_or_404(Article, id = article_id)
+	article.likes += 1
+	article.save()
+	response = HttpResponseRedirect('/')
+	return response
 
 
 def addcomment(request, article_id):
